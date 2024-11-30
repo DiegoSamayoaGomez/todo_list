@@ -20,10 +20,11 @@ export const projectsFunc = function projectsFunc() {
         return projectArr.splice(positionProject, 1, { nameProject, descriptionProject, toDoList });
     }
 
-
     //Delete project and all of it inner toDo Lists
+    const deleteProject = (positionProject) => {
+        return projectArr.splice(positionProject, 1);
+    }
 
-    
     //Iterate through the array of projects and display each one
     // ** MOVE TO THE DOM CONTROLLER AFTER ** 
     const showProjects = () => {
@@ -39,5 +40,5 @@ export const projectsFunc = function projectsFunc() {
 
     //Show current collection of projects
     const getProjectArr = () => projectArr;
-    return { createProject, addProjectToCollection, getProjectArr, updateProjects};
+    return { createProject, addProjectToCollection, getProjectArr, updateProjects, deleteProject };
 }
