@@ -15,7 +15,17 @@ export const projectsFunc = function projectsFunc() {
         return addProject;
     }
 
+    //Receive the position of the object to modify and change it
+    const updateProjects = (positionProject, nameProject, descriptionProject, toDoList) => {
+        return projectArr.splice(positionProject, 1, { nameProject, descriptionProject, toDoList });
+    }
+
+
+    //Delete project and all of it inner toDo Lists
+
+    
     //Iterate through the array of projects and display each one
+    // ** MOVE TO THE DOM CONTROLLER AFTER ** 
     const showProjects = () => {
         const showProjects = projectArr.forEach((element, index) => {
             let nameProject = element.nameProject;
@@ -23,11 +33,11 @@ export const projectsFunc = function projectsFunc() {
             let toDoList = element.toDoList;
             let positionProject = index;
             console.log(nameProject);
-            
+
         });
     }
 
     //Show current collection of projects
     const getProjectArr = () => projectArr;
-    return { createProject, addProjectToCollection, getProjectArr, showProjects };
+    return { createProject, addProjectToCollection, getProjectArr, updateProjects};
 }
