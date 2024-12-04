@@ -1,4 +1,8 @@
+import { projectsFunc } from "./projects.js";
+
 export const todosFunc = function todosFunc() {
+
+    const instanceOfProjects = projectsFunc();
 
     //Store of todos objects
     const todosArr = [];
@@ -16,6 +20,10 @@ export const todosFunc = function todosFunc() {
     };
 
     return {
-        createTodo, addTodoToProject
+        createTodo, addTodoToProject,
+        createProject: instanceOfProjects.createProject, addProjectToCollection: instanceOfProjects.addProjectToCollection,
+        getProjectArr: instanceOfProjects.getProjectArr, updateProjects: instanceOfProjects.updateProjects,
+        deleteProject: instanceOfProjects.deleteProject
+
     };
 }
