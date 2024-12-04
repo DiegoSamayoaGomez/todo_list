@@ -8,7 +8,14 @@ export const todosFunc = function todosFunc() {
         return { nameTodo, descriptionTodo, dueDate, priority };
     };
 
+    // Create a new todo list and add it to the array of todos
+    const addTodoToProject = (positionProject, nameTodo, descriptionTodo, dueDate, priority) => {
+        const addTodo = createTodo(nameTodo, descriptionTodo, dueDate, priority);
+        todosArr.push(addTodo);
+        return addTodoToProject;
+    };
+
     return {
-        createTodo
+        createTodo, addTodoToProject
     };
 }
