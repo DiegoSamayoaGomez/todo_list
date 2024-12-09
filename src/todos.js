@@ -12,15 +12,17 @@ export const todosFunc = function todosFunc() {
         return { nameTodo, descriptionTodo, dueDate, priority };
     };
 
-    // Create a new todo list and add it to the array of todos
-    const addTodoToProject = (positionProject, nameTodo, descriptionTodo, dueDate, priority) => {
+    // Create a new todo object and sends it to the project module to update the selected project
+    const sendTodoToProject = (positionProject, nameTodo, descriptionTodo, dueDate, priority) => {
         const addTodo = createTodo(nameTodo, descriptionTodo, dueDate, priority);
-        todosArr.push(addTodo);
-        return addTodoToProject;
+        instanceOfProjects.addTodoToProject(positionProject, addTodo);
     };
 
+    const getTodosArr = () => todosArr;
+
+
     return {
-        createTodo, addTodoToProject,
+        createTodo, sendTodoToProject, getTodosArr,
         createProject: instanceOfProjects.createProject, addProjectToCollection: instanceOfProjects.addProjectToCollection,
         getProjectArr: instanceOfProjects.getProjectArr, updateProjects: instanceOfProjects.updateProjects,
         deleteProject: instanceOfProjects.deleteProject
