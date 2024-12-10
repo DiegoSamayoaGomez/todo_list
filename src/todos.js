@@ -25,16 +25,21 @@ export const todosFunc = function todosFunc() {
         instanceOfProjects.getProjectArr()[positionProject].toDoList.splice(positionTodo, 1, { nameTodo, descriptionTodo, dueDate, priority });
     };
 
+    //Receives position of the project and the position of the todo list and then deletes it
     const deleteTodo = (positionProject, positionTodo) => {
         instanceOfProjects.getProjectArr()[positionProject].toDoList.splice(positionTodo, 1);
-        return console.log("DELETED")
+    };
+
+    //Show an specific todo list based on the project and its position
+    const selectTodo = (positionProject, positionTodo) => {
+        return instanceOfProjects.getProjectArr()[positionProject].toDoList[positionTodo];
     };
 
     const getTodosArr = () => todosArr;
 
 
     return {
-        createTodo, addTodoToProject, getTodosArr, updateTodo, deleteTodo,
+        createTodo, addTodoToProject, getTodosArr, updateTodo, deleteTodo, selectTodo,
         createProject: instanceOfProjects.createProject, addProjectToCollection: instanceOfProjects.addProjectToCollection,
         getProjectArr: instanceOfProjects.getProjectArr, updateProjects: instanceOfProjects.updateProjects,
         deleteProject: instanceOfProjects.deleteProject
