@@ -12,23 +12,16 @@ export const projectsFunc = function projectsFunc() {
     const addProjectToCollection = (nameProject, descriptionProject, toDoList) => {
         const addProject = createProject(nameProject, descriptionProject, toDoList);
         projectArr.push(addProject);
-        return addProject;
     }
 
     //Receive the position of the object to modify and change it
     const updateProjects = (positionProject, nameProject, descriptionProject, toDoList) => {
-        return projectArr.splice(positionProject, 1, { nameProject, descriptionProject, toDoList });
+        projectArr.splice(positionProject, 1, { nameProject, descriptionProject, toDoList });
     }
-
-    //Receive the position of the project to modify and adds it a new todo to the todo Item in the array
-    //const addTodoToProject = (positionProject, todoListObj) => {
-    //  projectArr[positionProject].toDoList.push(todoListObj);
-    //console.log("TODOS ARR", projectArr[positionProject]);
-    //}
 
     //Delete project and all of it inner toDo Lists
     const deleteProject = (positionProject) => {
-        return projectArr.splice(positionProject, 1);
+        projectArr.splice(positionProject, 1);
     }
 
     //Iterate through the array of projects and display each one
