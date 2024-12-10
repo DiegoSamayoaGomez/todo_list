@@ -20,11 +20,20 @@ export const todosFunc = function todosFunc() {
         instanceOfProjects.getProjectArr()[positionProject].toDoList.push(addTodo);
     };
 
+
+    //
+    const updateTodo = (positionProject, positionTodo, nameTodo, descriptionTodo, dueDate, priority) => {
+        //return projectArr.splice(positionProject, 1, { nameProject, descriptionProject, toDoList });
+        const xd = instanceOfProjects.getProjectArr()[positionProject].toDoList.splice(positionTodo, 1, { nameTodo, descriptionTodo, dueDate, priority });
+
+    };
+
+
     const getTodosArr = () => todosArr;
 
 
     return {
-        createTodo, addTodoToProject, getTodosArr,
+        createTodo, addTodoToProject, getTodosArr, updateTodo,
         createProject: instanceOfProjects.createProject, addProjectToCollection: instanceOfProjects.addProjectToCollection,
         getProjectArr: instanceOfProjects.getProjectArr, updateProjects: instanceOfProjects.updateProjects,
         deleteProject: instanceOfProjects.deleteProject
