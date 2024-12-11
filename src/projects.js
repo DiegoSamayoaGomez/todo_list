@@ -1,7 +1,7 @@
 export const projectsFunc = function projectsFunc() {
 
     //Store of project objects
-    const projectArr = [];
+    let projectArr = [];
 
     //Factory function to create project objects
     const createProject = (nameProject, descriptionProject, toDoList) => {
@@ -12,16 +12,21 @@ export const projectsFunc = function projectsFunc() {
     const addProjectToCollection = (nameProject, descriptionProject, toDoList) => {
         const addProject = createProject(nameProject, descriptionProject, toDoList);
         projectArr.push(addProject);
+        saveProjectLocally();
     }
 
     //Receive the position of the object to modify and change it
     const updateProjects = (positionProject, nameProject, descriptionProject, toDoList) => {
+        restoreProjectLocally();
         projectArr.splice(positionProject, 1, { nameProject, descriptionProject, toDoList });
+        saveProjectLocally();
     }
 
     //Delete project and all of it inner toDo Lists
     const deleteProject = (positionProject) => {
+        restoreProjectLocally();
         projectArr.splice(positionProject, 1);
+        saveProjectLocally();
     }
 
     // Save the array to localStorage
