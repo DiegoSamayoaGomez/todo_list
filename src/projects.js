@@ -29,6 +29,11 @@ export const projectsFunc = function projectsFunc() {
         localStorage.setItem("Project", JSON.stringify(getProjectArr()));  // Save the current projectArr
     };
 
+    // Restore and update the array from localStorage
+    const restoreProjectLocally = () => {
+        const savedData = localStorage.getItem("Project");
+        projectArr = savedData ? JSON.parse(savedData) : [];  // Update projectArr directly with the restored data
+    };
 
     //Iterate through the array of projects and display each one
     // ** MOVE TO THE DOM CONTROLLER AFTER ** 
