@@ -24,6 +24,12 @@ export const projectsFunc = function projectsFunc() {
         projectArr.splice(positionProject, 1);
     }
 
+    // Save the array to localStorage
+    const saveProjectLocally = () => {
+        localStorage.setItem("Project", JSON.stringify(getProjectArr()));  // Save the current projectArr
+    };
+
+
     //Iterate through the array of projects and display each one
     // ** MOVE TO THE DOM CONTROLLER AFTER ** 
     const showProjects = () => {
@@ -39,5 +45,5 @@ export const projectsFunc = function projectsFunc() {
 
     //Show current collection of projects
     const getProjectArr = () => projectArr;
-    return { createProject, addProjectToCollection, getProjectArr, updateProjects, deleteProject };
+    return { createProject, addProjectToCollection, getProjectArr, updateProjects, deleteProject, saveProjectLocally, restoreProjectLocally };
 }
