@@ -6,15 +6,6 @@ export const displayFunc = function displayFunc() {
     const instanceofTodos = todosFunc();
     // projects -> todos -> display
 
-    //DUMMY CONTENT
-    instanceofTodos.addProjectToCollection("project 1 TODO", "description 1", []);
-    instanceofTodos.addProjectToCollection("project 2", "description 2", []);
-    instanceofTodos.addProjectToCollection("project 3", "description 3", []);
-    instanceofTodos.addProjectToCollection("project 4", "description 4", []);
-    instanceofTodos.addProjectToCollection("project 5", "description 5", []);
-    instanceofTodos.addProjectToCollection("project 6", "description 6", []);
-
-
     //CREATE A TITLE AND A BUTTON TO CREATE NEW CARDS
     //Create a DOM element and assign the title
     const title = document.querySelector("#title");
@@ -107,7 +98,7 @@ export const displayFunc = function displayFunc() {
 
 
     return {
-        projectController, showProjects
+        showProjects
     };
 
 }
