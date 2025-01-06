@@ -6,6 +6,29 @@ export const displayFunc = function displayFunc() {
     const instanceofTodos = todosFunc();
     // projects -> todos -> display
 
+    //DUMMY CONTENT
+    instanceofTodos.addProjectToCollection("project 1 TODO", "description 1", []);
+    instanceofTodos.addProjectToCollection("project 2", "description 2", []);
+    instanceofTodos.addProjectToCollection("project 3", "description 3", []);
+    instanceofTodos.addProjectToCollection("project 4", "description 4", []);
+    instanceofTodos.addProjectToCollection("project 5", "description 5", []);
+    instanceofTodos.addProjectToCollection("project 6", "description 6", []);
+
+    instanceofTodos.addTodoToProject(0, "todo 01", "description todo 01", "26/11/2024", 5);
+    instanceofTodos.addTodoToProject(0, "todo 02", "description todo 02", "26/11/2024", 4);
+    
+    instanceofTodos.addTodoToProject(1, "todo 11", "description todo 11", "26/11/2024", 3);
+    instanceofTodos.addTodoToProject(1, "todo 12", "description todo 12", "26/11/2024", 2);
+    
+    instanceofTodos.addTodoToProject(2, "todo 21", "description todo 21", "26/11/2024", 1);
+    
+    instanceofTodos.addTodoToProject(3, "todo 31", "description todo 31", "26/11/2024", 5);
+    instanceofTodos.addTodoToProject(3, "todo 32", "description todo 32", "26/11/2024", 5);
+    
+    instanceofTodos.addTodoToProject(4, "todo 41", "description todo 41", "26/11/2024", 1);
+    instanceofTodos.addTodoToProject(4, "todo 42", "description todo 42", "26/11/2024", 1);
+
+    
     //CREATE A TITLE AND A BUTTON TO CREATE NEW CARDS
     //Create a DOM element and assign the title
     const title = document.querySelector("#title");
@@ -40,18 +63,18 @@ export const displayFunc = function displayFunc() {
             let descriptionProject = element.descriptionProject;
             let toDoList = element.toDoList;
             let positionProject = index;
-            projectController(nameProject, descriptionProject, positionProject);
+            projectController(nameProject, descriptionProject, toDoList.length, positionProject);
         });
     }
 
     //Populate all projects in the display by using DOM after receiving data from showProjects
-    const projectController = (nameProject, descriptionProject, positionProject) => {
-        console.log("POSITION", positionProject);
+    const projectController = (nameProject, descriptionProject, todoList, positionProject) => {
+
 
         //Container for individual cards
         const projectCard = document.createElement("div");
         projectCard.classList = "projectCard";
-        //projectCard.id = positionProject;
+        projectCard.id = positionProject;
         cards.appendChild(projectCard);
 
         //Information of each card
@@ -74,7 +97,7 @@ export const displayFunc = function displayFunc() {
 
         const toDoListCard = document.createElement("p");
         toDoListCard.classList = "toDoListCard";
-        toDoListCard.textContent = "TODO LENGHT";
+        toDoListCard.textContent = todoList;
         projectInfo.appendChild(toDoListCard);
 
 
@@ -98,7 +121,7 @@ export const displayFunc = function displayFunc() {
 
 
     return {
-        showProjects
+        projectController, showProjects
     };
 
 }
