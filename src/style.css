@@ -69,6 +69,7 @@ button {
 
 .cards {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
 }
 
@@ -96,4 +97,12 @@ button {
     background-color: #fe355c;
     font-weight: bold;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#showModal {
+    width: 300px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.20) 0px 5px 15px;
+    text-align: center;
 }
