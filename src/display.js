@@ -16,19 +16,19 @@ export const displayFunc = function displayFunc() {
 
     instanceofTodos.addTodoToProject(0, "todo 01", "description todo 01", "26/11/2024", 5);
     instanceofTodos.addTodoToProject(0, "todo 02", "description todo 02", "26/11/2024", 4);
-    
+
     instanceofTodos.addTodoToProject(1, "todo 11", "description todo 11", "26/11/2024", 3);
     instanceofTodos.addTodoToProject(1, "todo 12", "description todo 12", "26/11/2024", 2);
-    
+
     instanceofTodos.addTodoToProject(2, "todo 21", "description todo 21", "26/11/2024", 1);
-    
+
     instanceofTodos.addTodoToProject(3, "todo 31", "description todo 31", "26/11/2024", 5);
     instanceofTodos.addTodoToProject(3, "todo 32", "description todo 32", "26/11/2024", 5);
-    
+
     instanceofTodos.addTodoToProject(4, "todo 41", "description todo 41", "26/11/2024", 1);
     instanceofTodos.addTodoToProject(4, "todo 42", "description todo 42", "26/11/2024", 1);
 
-    
+
     //CREATE A TITLE AND A BUTTON TO CREATE NEW CARDS
     //Create a DOM element and assign the title
     const title = document.querySelector("#title");
@@ -119,6 +119,30 @@ export const displayFunc = function displayFunc() {
         projectOptions.appendChild(deleteBTn);
     };
 
+    // draw a modal
+    const newProjectModal = () => {
+
+        const projectModal = document.querySelector("#showModal");
+        projectModal.textContent = "";
+        const projectInformation = document.createElement("h2");
+        projectInformation.textContent = "Project Information";
+
+        const closeInformation = document.createElement("p");
+        closeInformation.textContent = "Press ESC to close without saving";
+
+        projectModal.appendChild(projectInformation);
+        projectModal.appendChild(closeInformation);
+
+        //DRAW FORM
+        projectModal.showModal();
+    };
+
+    newProjectBtn.addEventListener("click", () => {
+
+        newProjectModal();
+
+
+    });
 
     return {
         projectController, showProjects
