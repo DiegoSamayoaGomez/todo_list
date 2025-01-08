@@ -83,12 +83,13 @@ button {
     Box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.projectOptions{
+.projectOptions {
     display: flex;
     justify-content: space-around;
- 
-    
+
+
 }
+
 .footer {
     width: 100%;
     display: flex;
@@ -104,5 +105,28 @@ button {
     border: none;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.20) 0px 5px 15px;
+}
+
+#showModal>h2 {
     text-align: center;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+
+    padding: 10px;
+}
+
+label {
+    display: block;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+input[type=text], textarea {
+    width: 100%;
 }
