@@ -137,7 +137,7 @@ export const displayFunc = function displayFunc() {
         const nameProjectInput = document.createElement("input");
         nameProjectInput.id = "nameProject";
         nameProjectInput.setAttribute("type", "text");
-        nameProjectInput.setAttribute("name", "FullNameProject");
+        nameProjectInput.setAttribute("name", "name");
         nameProjectInput.setAttribute("required", "required");
 
         //Append label and input for project name to IL
@@ -146,6 +146,26 @@ export const displayFunc = function displayFunc() {
 
         //Append IL of project name to UL
         ulForm.appendChild(ilNameProject);
+
+        //Create label and input element for project description
+
+        const ilDescripctionProject = document.createElement("il");
+        const descriptionProjectLabel = document.createElement("label");
+        descriptionProjectLabel.textContent = "Description"
+        descriptionProjectLabel.htmlFor = "descriptionProject";
+
+        const descripctionProjectInput = document.createElement("textArea");
+        descripctionProjectInput.id = "descriptionProject";
+        descripctionProjectInput.setAttribute("type", "text");
+        descripctionProjectInput.setAttribute("name", "description");
+        descripctionProjectInput.setAttribute("required", "required");
+
+        //Append label and input for project name to IL
+        ilDescripctionProject.appendChild(descriptionProjectLabel);
+        ilDescripctionProject.appendChild(descripctionProjectInput);
+
+        //Append IL of project name to UL
+        ulForm.appendChild(ilDescripctionProject);
 
         //Append UL to form
         projectForm.appendChild(ulForm);
