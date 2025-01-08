@@ -119,29 +119,67 @@ export const displayFunc = function displayFunc() {
         projectOptions.appendChild(deleteBTn);
     };
 
+
+    // Draw form
+    const newProjectForm = () => {
+        //Acces modal element
+        const projectModal = document.querySelector("#showModal");
+        //Create form
+        const projectForm = document.createElement("form");
+        //Create UL to give design
+        const ulForm = document.createElement("ul");
+        //Create label and input element for project name
+        const ilNameProject = document.createElement("il");
+        const nameProjectLabel = document.createElement("label");
+        nameProjectLabel.textContent = "Project Name"
+        nameProjectLabel.htmlFor = "nameProject";
+
+        const nameProjectInput = document.createElement("input");
+        nameProjectInput.id = "nameProject";
+        nameProjectInput.setAttribute("type", "text");
+        nameProjectInput.setAttribute("name", "FullNameProject");
+        nameProjectInput.setAttribute("required", "required");
+
+        //Append label and input for project name to IL
+        ilNameProject.appendChild(nameProjectLabel);
+        ilNameProject.appendChild(nameProjectInput);
+
+        //Append IL of project name to UL
+        ulForm.appendChild(ilNameProject);
+
+        //Append UL to form
+        projectForm.appendChild(ulForm);
+
+        //Append form to modal dialog
+        projectModal.appendChild(projectForm);
+
+    };
+
     // draw a modal
     const newProjectModal = () => {
-
+        //Convert element into a DOM element
         const projectModal = document.querySelector("#showModal");
+        //Clear screen
         projectModal.textContent = "";
+        //Create title element
         const projectInformation = document.createElement("h2");
         projectInformation.textContent = "Project Information";
 
         const closeInformation = document.createElement("p");
         closeInformation.textContent = "Press ESC to close without saving";
-
+        //Attach it to the parent element
         projectModal.appendChild(projectInformation);
         projectModal.appendChild(closeInformation);
 
         //DRAW FORM
+        newProjectForm();
+        //Open modal when the function is called
         projectModal.showModal();
     };
 
     newProjectBtn.addEventListener("click", () => {
-
+        //Call function and open that modal dialog
         newProjectModal();
-
-
     });
 
     return {
