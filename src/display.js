@@ -129,7 +129,7 @@ export const displayFunc = function displayFunc() {
         //Create UL to give design
         const ulForm = document.createElement("ul");
         //Create label and input element for project name
-        const ilNameProject = document.createElement("il");
+        const ilNameProject = document.createElement("li");
         const nameProjectLabel = document.createElement("label");
         nameProjectLabel.textContent = "Project Name"
         nameProjectLabel.htmlFor = "nameProject";
@@ -140,7 +140,7 @@ export const displayFunc = function displayFunc() {
         nameProjectInput.setAttribute("name", "name");
         nameProjectInput.setAttribute("required", "required");
 
-        //Append label and input for project name to IL
+        //Append label and input for project name to LI
         ilNameProject.appendChild(nameProjectLabel);
         ilNameProject.appendChild(nameProjectInput);
 
@@ -149,7 +149,7 @@ export const displayFunc = function displayFunc() {
 
         //Create label and input element for project description
 
-        const ilDescripctionProject = document.createElement("il");
+        const ilDescripctionProject = document.createElement("li");
         const descriptionProjectLabel = document.createElement("label");
         descriptionProjectLabel.textContent = "Description"
         descriptionProjectLabel.htmlFor = "descriptionProject";
@@ -160,11 +160,11 @@ export const displayFunc = function displayFunc() {
         descripctionProjectInput.setAttribute("name", "description");
         descripctionProjectInput.setAttribute("required", "required");
 
-        //Append label and input for project name to IL
+        //Append label and input for project name to LI
         ilDescripctionProject.appendChild(descriptionProjectLabel);
         ilDescripctionProject.appendChild(descripctionProjectInput);
 
-        //Append IL of project name to UL
+        //Append LI of project name to UL
         ulForm.appendChild(ilDescripctionProject);
 
         //Append UL to form
