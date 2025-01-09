@@ -167,6 +167,19 @@ export const displayFunc = function displayFunc() {
         //Append LI of project name to UL
         ulForm.appendChild(ilDescripctionProject);
 
+        //Create submit button
+        const liProjectBtn = document.createElement("li");
+        const createProjectBtn = document.createElement("button");
+        createProjectBtn.textContent = "Create";
+        createProjectBtn.id = "confirmBtn";
+        createProjectBtn.value = "submit";
+
+        //Append button to LI element
+        liProjectBtn.appendChild(createProjectBtn);
+
+        //Append LI to UL element
+        ulForm.appendChild(liProjectBtn);
+
         //Append UL to form
         projectForm.appendChild(ulForm);
 
