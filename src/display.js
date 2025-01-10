@@ -58,6 +58,8 @@ export const displayFunc = function displayFunc() {
 
     // Iterate the array of objects and send it to the controller
     const showProjects = () => {
+        cards.textContent = "";
+        console.table(instanceofTodos.getProjectArr());
         instanceofTodos.getProjectArr().forEach((element, index) => {
             let nameProject = element.nameProject;
             let descriptionProject = element.descriptionProject;
@@ -126,6 +128,7 @@ export const displayFunc = function displayFunc() {
         const projectModal = document.querySelector("#showModal");
         //Create form
         const projectForm = document.createElement("form");
+        projectForm.id = "projectForm";
         //Create UL to give design
         const ulForm = document.createElement("ul");
         //Create label and input element for project name
@@ -213,6 +216,24 @@ export const displayFunc = function displayFunc() {
     newProjectBtn.addEventListener("click", () => {
         //Call function and open that modal dialog
         newProjectModal();
+    });
+
+
+    const submitterButton = document.getElementById("confirmBtn");
+    document.getElementById('showModal').addEventListener('submit', function (event) {
+        if (event.target && event.target.id === 'projectForm') {
+            event.preventDefault();
+            // Handle form submission
+            //Get data from the form after pressing the submit button
+            const formData = new FormData(projectForm, submitterButton);
+            //Convert the data obtained from the form into an object
+            const formProps = Object.fromEntries(formData);
+
+            instanceofTodos.addProjectToCollection(formProps.name, formProps.description, []);
+            showProjects();
+
+            console.log("xd", formProps.name);
+        }
     });
 
     return {
