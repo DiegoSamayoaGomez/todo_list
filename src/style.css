@@ -73,22 +73,33 @@ button {
     gap: 10px;
 }
 
+.nameProjectCard {
+    text-align: center;
+}
+
 .projectCard {
     width: 300px;
     height: 300px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 10px;
     Box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+
+.descriptionProjectCard {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
 }
 
 .projectOptions {
     display: flex;
     justify-content: space-around;
-
-
 }
+
 
 .footer {
     width: 100%;
