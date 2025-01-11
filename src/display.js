@@ -7,6 +7,7 @@ export const displayFunc = function displayFunc() {
     // projects -> todos -> display
 
     //DUMMY CONTENT
+    /* 
     instanceofTodos.addProjectToCollection("project 1 TODO", "description 1", []);
     instanceofTodos.addProjectToCollection("project 2", "description 2", []);
     instanceofTodos.addProjectToCollection("project 3", "description 3", []);
@@ -27,7 +28,7 @@ export const displayFunc = function displayFunc() {
 
     instanceofTodos.addTodoToProject(4, "todo 41", "description todo 41", "26/11/2024", 1);
     instanceofTodos.addTodoToProject(4, "todo 42", "description todo 42", "26/11/2024", 1);
-
+*/
 
     //CREATE A TITLE AND A BUTTON TO CREATE NEW CARDS
     //Create a DOM element and assign the title
@@ -99,7 +100,7 @@ export const displayFunc = function displayFunc() {
 
         const toDoListCard = document.createElement("p");
         toDoListCard.classList = "toDoListCard";
-        toDoListCard.textContent = todoList;
+        toDoListCard.textContent = `You have ${todoList} todos saved`;
         projectInfo.appendChild(toDoListCard);
 
 
@@ -154,11 +155,12 @@ export const displayFunc = function displayFunc() {
 
         const ilDescripctionProject = document.createElement("li");
         const descriptionProjectLabel = document.createElement("label");
-        descriptionProjectLabel.textContent = "Description"
+        descriptionProjectLabel.textContent = "Description";
         descriptionProjectLabel.htmlFor = "descriptionProject";
 
         const descripctionProjectInput = document.createElement("textArea");
         descripctionProjectInput.id = "descriptionProject";
+        descripctionProjectInput.maxLength = 300;
         descripctionProjectInput.setAttribute("type", "text");
         descripctionProjectInput.setAttribute("name", "description");
         descripctionProjectInput.setAttribute("required", "required");
