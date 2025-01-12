@@ -160,7 +160,7 @@ export const displayFunc = function displayFunc() {
 
         const descripctionProjectInput = document.createElement("textArea");
         descripctionProjectInput.id = "descriptionProject";
-        descripctionProjectInput.maxLength = 300;
+        descripctionProjectInput.maxLength = 200;
         descripctionProjectInput.setAttribute("type", "text");
         descripctionProjectInput.setAttribute("name", "description");
         descripctionProjectInput.setAttribute("required", "required");
@@ -224,6 +224,8 @@ export const displayFunc = function displayFunc() {
     const submitterButton = document.getElementById("confirmBtn");
     document.getElementById('showModal').addEventListener('submit', function (event) {
         if (event.target && event.target.id === 'projectForm') {
+            //Convert element into a DOM element
+            const projectModal = document.querySelector("#showModal");
             event.preventDefault();
             // Handle form submission
             //Get data from the form after pressing the submit button
@@ -233,8 +235,11 @@ export const displayFunc = function displayFunc() {
 
             instanceofTodos.addProjectToCollection(formProps.name, formProps.description, []);
             showProjects();
+            document.querySelector("#projectForm").reset();
+            //Close the modal after pressing the confirm button
+            projectModal.close();
 
-            console.log("xd", formProps.name);
+
         }
     });
 
