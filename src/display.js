@@ -120,6 +120,13 @@ export const displayFunc = function displayFunc() {
         deleteBTn.classList = "deleteBTn";
         deleteBTn.textContent = "Delete";
         projectOptions.appendChild(deleteBTn);
+        deleteBTn.dataset.identifier = positionProject;
+
+        //Delete button
+        deleteBTn.addEventListener("click", () => {
+            instanceofTodos.deleteProject(positionProject);
+            showProjects();
+        });
     };
 
 
@@ -242,6 +249,7 @@ export const displayFunc = function displayFunc() {
 
         }
     });
+
 
     return {
         projectController, showProjects
