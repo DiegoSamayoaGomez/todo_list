@@ -110,6 +110,13 @@ export const displayFunc = function displayFunc() {
         projectCard.appendChild(projectOptions);
 
         //ADD HERE UPDATE AND DELETE BUTTONS
+
+        //Add TODO Button
+        const createTodoBtn = document.createElement("button");
+        createTodoBtn.classList = "createTodoBtn";
+        createTodoBtn.textContent = "View";
+        projectOptions.appendChild(createTodoBtn);
+
         const updateBtn = document.createElement("button");
         updateBtn.classList = "updateBtn";
         updateBtn.textContent = "Update";
