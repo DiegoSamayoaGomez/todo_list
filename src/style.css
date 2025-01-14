@@ -51,7 +51,6 @@ button {
     border: none;
     border-radius: 5px;
     font-weight: bold;
-    background-color: #B43243;
     color: white;
 
 }
@@ -65,6 +64,7 @@ button {
 
 .newProjectBtn {
     margin-bottom: 10px;
+    background-color: #B43243;
 }
 
 .cards {
@@ -87,8 +87,8 @@ button {
     Box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.projectInfo{
-text-overflow: ellipsis;    
+.projectInfo {
+    text-overflow: ellipsis;
 }
 
 .descriptionProjectCard {
@@ -102,7 +102,21 @@ text-overflow: ellipsis;
     justify-content: space-around;
 }
 
+.createTodoBtn {
+    background-color: black;
+}
 
+.updateBtn {
+    background-color: white;
+    color: black;
+    border: solid black 1px;
+}
+
+.deleteBTn{
+    background-color: white;
+    color: #B43243;
+    border: solid #B43243 1px;
+}
 .footer {
     width: 100%;
     display: flex;
