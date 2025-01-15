@@ -134,11 +134,21 @@ export const displayFunc = function displayFunc() {
             instanceofTodos.deleteProject(positionProject);
             showProjects();
         });
+
+        //update Button
+        updateBtn.addEventListener("click", () =>{
+            console.log("TITLE", nameProject, descriptionProject);
+            newProjectModal();
+            newProjectModal(nameProject, descriptionProject);
+        });
     };
 
 
     // Draw form
-    const newProjectForm = () => {
+    const newProjectForm = (projectTitle, projectDescription) => {
+        //projectTitle = "uwu";
+        //projectDescription = "XD"
+        console.log("XDDD", projectTitle, projectDescription)
         //Acces modal element
         const projectModal = document.querySelector("#showModal");
         //Create form
@@ -154,6 +164,8 @@ export const displayFunc = function displayFunc() {
 
         const nameProjectInput = document.createElement("input");
         nameProjectInput.id = "nameProject";
+
+        projectTitle == undefined ? nameProjectInput.value = "" : nameProjectInput.value = projectTitle;
         nameProjectInput.setAttribute("type", "text");
         nameProjectInput.setAttribute("name", "name");
         nameProjectInput.setAttribute("required", "required");
@@ -174,6 +186,7 @@ export const displayFunc = function displayFunc() {
 
         const descripctionProjectInput = document.createElement("textArea");
         descripctionProjectInput.id = "descriptionProject";
+        projectDescription == undefined ? descripctionProjectInput.value = "" : descripctionProjectInput.value = projectDescription;
         descripctionProjectInput.maxLength = 200;
         descripctionProjectInput.setAttribute("type", "text");
         descripctionProjectInput.setAttribute("name", "description");
@@ -208,7 +221,7 @@ export const displayFunc = function displayFunc() {
     };
 
     // draw a modal
-    const newProjectModal = () => {
+    const newProjectModal = (nameProject, descriptionProject) => {
         //Convert element into a DOM element
         const projectModal = document.querySelector("#showModal");
         //Clear screen
@@ -224,7 +237,8 @@ export const displayFunc = function displayFunc() {
         projectModal.appendChild(closeInformation);
 
         //DRAW FORM
-        newProjectForm();
+        //newProjectForm();
+        newProjectForm(nameProject, descriptionProject);
         //Open modal when the function is called
         projectModal.showModal();
     };
