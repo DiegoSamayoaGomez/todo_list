@@ -122,7 +122,6 @@ export const displayFunc = function displayFunc() {
         updateBtn.textContent = "Update";
         projectOptions.appendChild(updateBtn);
 
-
         const deleteBTn = document.createElement("button");
         deleteBTn.classList = "deleteBTn";
         deleteBTn.textContent = "Delete";
@@ -136,24 +135,22 @@ export const displayFunc = function displayFunc() {
         });
 
         //update Button
-        updateBtn.addEventListener("click", () =>{
-            console.log("TITLE", nameProject, descriptionProject);
-            newProjectModal();
-            newProjectModal(nameProject, descriptionProject);
+        updateBtn.addEventListener("click", () => {
+            newProjectModal(nameProject, descriptionProject, positionProject);
         });
     };
 
 
     // Draw form
-    const newProjectForm = (projectTitle, projectDescription) => {
-        //projectTitle = "uwu";
-        //projectDescription = "XD"
-        console.log("XDDD", projectTitle, projectDescription)
+    const newProjectForm = (projectTitle, projectDescription, positionProject) => {
         //Acces modal element
         const projectModal = document.querySelector("#showModal");
         //Create form
         const projectForm = document.createElement("form");
-        projectForm.id = "projectForm";
+        //projectForm.id = "projectForm";
+        projectForm.id = ((projectTitle == undefined ) && (projectDescription == undefined)) ? "projectForm" : "updateProjectForm";
+        
+        projectForm.dataset.identifier = positionProject;
         //Create UL to give design
         const ulForm = document.createElement("ul");
         //Create label and input element for project name
@@ -202,9 +199,17 @@ export const displayFunc = function displayFunc() {
         //Create submit button
         const liProjectBtn = document.createElement("li");
         const createProjectBtn = document.createElement("button");
-        createProjectBtn.textContent = "Create";
-        createProjectBtn.id = "confirmBtn";
-        createProjectBtn.value = "submit";
+        if ((projectTitle == undefined) && (projectDescription == undefined)) {
+
+            createProjectBtn.textContent = "Create";
+            createProjectBtn.id = "confirmBtn";
+            createProjectBtn.value = "submit";
+        }
+        else {
+            createProjectBtn.textContent = "Update";
+            createProjectBtn.id = "updateBtnForm";
+            createProjectBtn.value = "submit";
+        }
 
         //Append button to LI element
         liProjectBtn.appendChild(createProjectBtn);
@@ -221,7 +226,8 @@ export const displayFunc = function displayFunc() {
     };
 
     // draw a modal
-    const newProjectModal = (nameProject, descriptionProject) => {
+    const newProjectModal = (nameProject, descriptionProject, positionProject) => {
+        //
         //Convert element into a DOM element
         const projectModal = document.querySelector("#showModal");
         //Clear screen
@@ -238,7 +244,7 @@ export const displayFunc = function displayFunc() {
 
         //DRAW FORM
         //newProjectForm();
-        newProjectForm(nameProject, descriptionProject);
+        newProjectForm(nameProject, descriptionProject, positionProject);
         //Open modal when the function is called
         projectModal.showModal();
     };
@@ -247,6 +253,7 @@ export const displayFunc = function displayFunc() {
         //Call function and open that modal dialog
         newProjectModal();
     });
+
 
 
     const submitterButton = document.getElementById("confirmBtn");
@@ -260,17 +267,39 @@ export const displayFunc = function displayFunc() {
             const formData = new FormData(projectForm, submitterButton);
             //Convert the data obtained from the form into an object
             const formProps = Object.fromEntries(formData);
-
             instanceofTodos.addProjectToCollection(formProps.name, formProps.description, []);
             showProjects();
             document.querySelector("#projectForm").reset();
             //Close the modal after pressing the confirm button
             projectModal.close();
-
-
         }
     });
 
+
+
+    const updaterButton = document.getElementById("updateBtnForm");
+    document.getElementById('showModal').addEventListener('submit', function (event) {
+        if (event.target && event.target.id === 'updateProjectForm') {
+            //Convert element into a DOM element
+            const projectModal = document.querySelector("#showModal");
+            event.preventDefault();
+            // Handle form submission
+            //Get data from the form after pressing the submit button
+            const formData = new FormData(updateProjectForm, updaterButton);
+            //Convert the data obtained from the form into an object
+ 
+            const xd2 = event.target.dataset.identifier;
+            const formProps = Object.fromEntries(formData);
+            console.log("All right", xd2);
+            //instanceofTodos.addProjectToCollection(formProps.name, formProps.description, []);
+            //positionProject, nameProject, descriptionProject, toDoList
+            instanceofTodos.updateProjects(xd2, formProps.name, formProps.description, []);
+            showProjects();
+            document.querySelector("#updateProjectForm").reset();
+            //Close the modal after pressing the confirm button
+            projectModal.close();
+        }
+    });
 
     return {
         projectController, showProjects
