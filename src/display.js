@@ -1,9 +1,12 @@
 import "./style.css";
-import { todosFunc } from "./todos.js";
+//import { todosFunc } from "./todos.js";
+import { projectsFunc } from "./projects.js";
+import { displayTodosFunc } from "./displayTodos.js";
 
 export const displayFunc = function displayFunc() {
     //Instance of the todos and project module
-    const instanceofTodos = todosFunc();
+    const instanceofProjects = projectsFunc();
+    //const testDisplayTodo = displayTodosFunc();
     // projects -> todos -> display
 
     //DUMMY CONTENT
@@ -15,11 +18,9 @@ export const displayFunc = function displayFunc() {
     instanceofTodos.addProjectToCollection("project 5", "description 5", []);
     instanceofTodos.addProjectToCollection("project 6", "description 6", []);
 
-    instanceofTodos.addTodoToProject(0, "todo 01", "description todo 01", "26/11/2024", 5);
+   instanceofTodos.addTodoToProject(0, "todo 01", "description todo 01", "26/11/2024", 5);
     instanceofTodos.addTodoToProject(0, "todo 02", "description todo 02", "26/11/2024", 4);
 
-    instanceofTodos.addTodoToProject(1, "todo 11", "description todo 11", "26/11/2024", 3);
-    instanceofTodos.addTodoToProject(1, "todo 12", "description todo 12", "26/11/2024", 2);
 
     instanceofTodos.addTodoToProject(2, "todo 21", "description todo 21", "26/11/2024", 1);
 
@@ -60,8 +61,8 @@ export const displayFunc = function displayFunc() {
     // Iterate the array of objects and send it to the controller
     const showProjects = () => {
         cards.textContent = "";
-        console.table(instanceofTodos.getProjectArr());
-        instanceofTodos.getProjectArr().forEach((element, index) => {
+        console.table(instanceofProjects.getProjectArr());
+        instanceofProjects.getProjectArr().forEach((element, index) => {
             let nameProject = element.nameProject;
             let descriptionProject = element.descriptionProject;
             let toDoList = element.toDoList;
@@ -130,13 +131,19 @@ export const displayFunc = function displayFunc() {
 
         //Delete button
         deleteBTn.addEventListener("click", () => {
-            instanceofTodos.deleteProject(positionProject);
+            instanceofProjects.deleteProject(positionProject);
             showProjects();
         });
 
         //update Button
         updateBtn.addEventListener("click", () => {
             newProjectModal(nameProject, descriptionProject, positionProject);
+        });
+
+        //View button
+        createTodoBtn.addEventListener("click", () => {
+            displayTodosFunc(positionProject);
+            //testDisplayTodo.testDisplayTodo();
         });
     };
 
@@ -148,8 +155,8 @@ export const displayFunc = function displayFunc() {
         //Create form
         const projectForm = document.createElement("form");
         //projectForm.id = "projectForm";
-        projectForm.id = ((projectTitle == undefined ) && (projectDescription == undefined)) ? "projectForm" : "updateProjectForm";
-        
+        projectForm.id = ((projectTitle == undefined) && (projectDescription == undefined)) ? "projectForm" : "updateProjectForm";
+
         projectForm.dataset.identifier = positionProject;
         //Create UL to give design
         const ulForm = document.createElement("ul");
@@ -267,7 +274,7 @@ export const displayFunc = function displayFunc() {
             const formData = new FormData(projectForm, submitterButton);
             //Convert the data obtained from the form into an object
             const formProps = Object.fromEntries(formData);
-            instanceofTodos.addProjectToCollection(formProps.name, formProps.description, []);
+            instanceofProjects.addProjectToCollection(formProps.name, formProps.description, []);
             showProjects();
             document.querySelector("#projectForm").reset();
             //Close the modal after pressing the confirm button
@@ -287,13 +294,13 @@ export const displayFunc = function displayFunc() {
             //Get data from the form after pressing the submit button
             const formData = new FormData(updateProjectForm, updaterButton);
             //Convert the data obtained from the form into an object
- 
+
             const xd2 = event.target.dataset.identifier;
             const formProps = Object.fromEntries(formData);
             console.log("All right", xd2);
             //instanceofTodos.addProjectToCollection(formProps.name, formProps.description, []);
             //positionProject, nameProject, descriptionProject, toDoList
-            instanceofTodos.updateProjects(xd2, formProps.name, formProps.description, []);
+            instanceofProjects.updateProjects(xd2, formProps.name, formProps.description, []);
             showProjects();
             document.querySelector("#updateProjectForm").reset();
             //Close the modal after pressing the confirm button
