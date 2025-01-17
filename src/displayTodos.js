@@ -9,6 +9,36 @@ instanceofTodos.addTodoToProject(0, "todo 02", "description todo 02", "26/11/202
 */
 
 export const displayTodosFunc = function displayTodosFunc(positionProject) {
+    //Create a DOM element of the main DIV container
+    const container = document.querySelector("#container");
+    container.textContent = "";
+    const title = document.querySelector("#title");
+    title.textContent = "";
+
+    //Assign a name to the title
+    const paragraphTitle = document.createElement("p");
+    paragraphTitle.textContent = "Todos";
+
+    title.appendChild(paragraphTitle);
+
+    //Button that creates a new project
+    const newTodoBtn = document.createElement("button");
+    newTodoBtn.classList = "newTodoBtn";
+    newTodoBtn.textContent = "New";
+    //Button which sends back the use to the main page
+    const backToProjectsBtn = document.createElement("button");
+    backToProjectsBtn.classList = "backToProjectsBtn";
+    backToProjectsBtn.textContent = "Back";
+
+    container.appendChild(newTodoBtn);
+    container.appendChild(backToProjectsBtn);
+
+    //Container for all cards
+    const cards = document.createElement("div");
+    cards.classList = "cards";
+
+    container.appendChild(cards);
+
 
     console.table(instanceofTodos.selectTodo(positionProject));
     console.log("TODOS", positionProject);
