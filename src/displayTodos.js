@@ -39,6 +39,17 @@ export const displayTodosFunc = function displayTodosFunc(positionProject) {
 
     container.appendChild(cards);
 
+    /* ********************* */
+    //Function to create elements
+    const createNewElement = (typeOfElement, className, idName, textToShow) => {
+        const newElement = document.createElement(typeOfElement);
+        newElement.textContent = textToShow;
+        newElement.classList = className;
+        newElement.id = idName;
+        return newElement;
+    }
+
+
 
     console.table(instanceofTodos.selectTodo(positionProject));
     console.log("TODOS", positionProject);
