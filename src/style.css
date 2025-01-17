@@ -160,7 +160,7 @@ textarea {
 }
 
 
-#confirmBtn {
+#confirmBtn, #updateBtnForm {
     padding: 5px 0px;
     font-size: large;
     font-weight: bold;
