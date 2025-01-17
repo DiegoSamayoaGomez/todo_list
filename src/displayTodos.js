@@ -9,6 +9,7 @@ instanceofTodos.addTodoToProject(0, "todo 02", "description todo 02", "26/11/202
 */
 
 export const displayTodosFunc = function displayTodosFunc(positionProject) {
+
     //Create a DOM element of the main DIV container
     const container = document.querySelector("#container");
     container.textContent = "";
@@ -49,8 +50,22 @@ export const displayTodosFunc = function displayTodosFunc(positionProject) {
         return newElement;
     }
 
-
-
+    // Iterate the array of objects and send it to the controller
+    const showTodos = () => {
+        cards.textContent = "";
+        console.log("from display todos");
+        console.table(instanceofTodos.selectTodo(positionProject));
+        instanceofTodos.selectTodo(positionProject).forEach((element, index) => {
+            let nameTodo = element.nameTodo;
+            let descriptionTodo = element.descriptionTodo;
+            let dueDate = element.dueDate;
+            let priority = element.priority;
+            let position = index;
+            //console.log(nameTodo, descriptionTodo, dueDate, priority, position);
+            //projectController(nameProject, descriptionProject, toDoList.length, positionProject);
+        });
+    }
     console.table(instanceofTodos.selectTodo(positionProject));
+    showTodos();
     console.log("TODOS", positionProject);
 }
