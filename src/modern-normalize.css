@@ -18,11 +18,12 @@ Use a better box model (opinionated).
 html {
     /* Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3) */
     font-family:
-        Helvetica,
+        'Helvetica',
+        sans-serif,
+
         'Segoe UI',
         Arial,
         system-ui,
-        sans-serif,
         'Apple Color Emoji',
         'Segoe UI Emoji';
     line-height: 1.15;
