@@ -2,10 +2,14 @@ import "./style.css";
 //import { todosFunc } from "./todos.js";
 import { projectsFunc } from "./projects.js";
 import { displayTodosFunc } from "./displayTodos.js";
+import { todosFunc } from "./todos.js";
+
 
 export const displayFunc = function displayFunc() {
     //Instance of the todos and project module
     const instanceofProjects = projectsFunc();
+    const instanceofTodos = todosFunc();
+
     //const testDisplayTodo = displayTodosFunc();
     // projects -> todos -> display
 
@@ -43,7 +47,7 @@ export const displayFunc = function displayFunc() {
 
     //Create a DOM element of the main DIV container
     const container = document.querySelector("#container");
-
+    //container.textContent = "";
     //Button that creates a new project
     const newProjectBtn = document.createElement("button");
     newProjectBtn.classList = "newProjectBtn";
@@ -295,12 +299,12 @@ export const displayFunc = function displayFunc() {
             const formData = new FormData(updateProjectForm, updaterButton);
             //Convert the data obtained from the form into an object
 
-            const xd2 = event.target.dataset.identifier;
+            const identifier = event.target.dataset.identifier;
             const formProps = Object.fromEntries(formData);
-            console.log("All right", xd2);
+            //console.log("All right", xd2);
             //instanceofTodos.addProjectToCollection(formProps.name, formProps.description, []);
             //positionProject, nameProject, descriptionProject, toDoList
-            instanceofProjects.updateProjects(xd2, formProps.name, formProps.description, []);
+            instanceofProjects.updateProjects(identifier, formProps.name, formProps.description, instanceofTodos.selectTodo(identifier));
             showProjects();
             document.querySelector("#updateProjectForm").reset();
             //Close the modal after pressing the confirm button
