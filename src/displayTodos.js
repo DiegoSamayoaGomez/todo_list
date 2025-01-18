@@ -60,11 +60,38 @@ export const displayTodosFunc = function displayTodosFunc(positionProject) {
             let descriptionTodo = element.descriptionTodo;
             let dueDate = element.dueDate;
             let priority = element.priority;
-            let position = index;
+            let positionTodo = index;
+            todoController(nameTodo, descriptionTodo, dueDate, priority, positionTodo);
             //console.log(nameTodo, descriptionTodo, dueDate, priority, position);
             //projectController(nameProject, descriptionProject, toDoList.length, positionProject);
         });
     }
+
+    //Populate all projects in the display by using DOM after receiving data from showProjects
+    const todoController = (nameTodo, descriptionTodo, dueDate, priority, positionTodo) => {
+
+        //Container for individual cards
+        const todoCard = createNewElement("div", "todoCard", positionTodo, "");
+        cards.appendChild(todoCard);
+
+        //Information of each card
+        const todoInfo = createNewElement("div", "todoInfo", "", "");
+        todoCard.appendChild(todoInfo);
+
+        //SHOW TITLE, DESCRIPTION, DATE, PRIORITY
+        const nameTodoCard = createNewElement("h3", "nameTodoCard", "", nameTodo);
+        todoInfo.appendChild(nameTodoCard);
+
+        const descriptionTodoCard = createNewElement("p", "descriptionTodoCard", "", descriptionTodo);
+        todoInfo.appendChild(descriptionTodoCard);
+
+        const dueDateCard = createNewElement("p", "dueDateCard", "", `Finish before ${dueDate}`);
+        todoInfo.appendChild(dueDateCard);
+
+        const priorityCard = createNewElement("p", "priorityCard", "", `Priority level ${priority}`);
+        todoInfo.appendChild(priorityCard);
+    };
+
     console.table(instanceofTodos.selectTodo(positionProject));
     showTodos();
     console.log("TODOS", positionProject);
