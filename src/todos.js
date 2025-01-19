@@ -24,25 +24,30 @@ export const todosFunc = function todosFunc() {
 
     // First find the position of the project, then find the position of the todo to change and insert new data
     const updateTodo = (positionProject, positionTodo, nameTodo, descriptionTodo, dueDate, priority) => {
-        instanceOfProjects.restoreProjectLocally();
+        //instanceOfProjects.restoreProjectLocally();
         instanceOfProjects.getProjectArr()[positionProject].toDoList.splice(positionTodo, 1, { nameTodo, descriptionTodo, dueDate, priority });
         instanceOfProjects.saveProjectLocally();
     };
 
     //Receives position of the project and the position of the todo list and then deletes it
     const deleteTodo = (positionProject, positionTodo) => {
-        instanceOfProjects.restoreProjectLocally();
+        //instanceOfProjects.restoreProjectLocally();
         instanceOfProjects.getProjectArr()[positionProject].toDoList.splice(positionTodo, 1);
         instanceOfProjects.saveProjectLocally();
     };
 
     //Show an specific todo list based on the project and its position
+    /*
     const selectTodo = (positionProject, positionTodo) => {
         return instanceOfProjects.getProjectArr()[positionProject].toDoList[positionTodo];
     };
+*/
+    const selectTodo = (positionProject) => {
+        return instanceOfProjects.getProjectArr()[positionProject].toDoList;
+    };
+
 
     const getTodosArr = () => todosArr;
-
 
     return {
         createTodo, addTodoToProject, getTodosArr, updateTodo, deleteTodo, selectTodo,
