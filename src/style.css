@@ -39,6 +39,14 @@ h3 {
     justify-content: center;
 }
 
+.buttonContainer {
+    display: flex;
+    width: 180px;
+    justify-content: space-between;
+    margin-bottom: 10px;
+ 
+}
+
 #title>p {
     font-weight: bold;
     font-size: 20px;
@@ -62,7 +70,7 @@ button {
     padding: 10px;
 }
 
-.newProjectBtn {
+.newProjectBtn, .newTodoBtn{
     margin-bottom: 10px;
     background-color: #B43243;
 }
@@ -77,7 +85,8 @@ button {
     text-align: center;
 }
 
-.projectCard, .todoCard{
+.projectCard,
+.todoCard {
     width: 300px;
     height: 300px;
     display: flex;
@@ -97,12 +106,13 @@ button {
 
 }
 
-.projectOptions {
+.projectOptions,
+.todoOptions {
     display: flex;
     justify-content: space-around;
 }
 
-.createTodoBtn {
+.createTodoBtn,  .backToProjectsBtn{
     background-color: black;
 }
 
@@ -112,11 +122,13 @@ button {
     border: solid black 1px;
 }
 
-.deleteBTn{
+.deleteBTn,
+.deleteBtn {
     background-color: white;
     color: #B43243;
     border: solid #B43243 1px;
 }
+
 .footer {
     width: 100%;
     display: flex;
@@ -160,7 +172,8 @@ textarea {
 }
 
 
-#confirmBtn, #updateBtnForm {
+#confirmBtn,
+#updateBtnForm {
     padding: 5px 0px;
     font-size: large;
     font-weight: bold;
