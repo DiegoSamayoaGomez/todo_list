@@ -29,10 +29,15 @@ export const displayTodosFunc = function displayTodosFunc(positionProject) {
     //Button which sends back the use to the main page
     const backToProjectsBtn = document.createElement("button");
     backToProjectsBtn.classList = "backToProjectsBtn";
-    backToProjectsBtn.textContent = "Back";
+    backToProjectsBtn.textContent = "< Back";
 
-    container.appendChild(newTodoBtn);
-    container.appendChild(backToProjectsBtn);
+    const buttonContainer = document.createElement("div");
+    buttonContainer.classList = "buttonContainer";
+
+    buttonContainer.appendChild(backToProjectsBtn);
+    buttonContainer.appendChild(newTodoBtn);
+   
+    container.appendChild(buttonContainer);
 
     //Container for all cards
     const cards = document.createElement("div");
@@ -90,6 +95,20 @@ export const displayTodosFunc = function displayTodosFunc(positionProject) {
 
         const priorityCard = createNewElement("p", "priorityCard", "", `Priority level ${priority}`);
         todoInfo.appendChild(priorityCard);
+
+        //Options for each card
+        const todoOptions = createNewElement("div", "todoOptions", "", "");
+        todoCard.appendChild(todoOptions);
+
+        //Update and Delete Buttons
+        const updateBtn = createNewElement("button", "updateBtn", "", "Update");
+        todoOptions.appendChild(updateBtn);
+
+        const deleteBtn = createNewElement("button", "deleteBtn", "", "Delete");
+        todoOptions.appendChild(deleteBtn);
+
+
+
     };
 
     console.table(instanceofTodos.selectTodo(positionProject));
