@@ -16,7 +16,7 @@ instanceofTodos.addTodoToProject(0, "todo 02", "description todo 02", "26/11/202
 */
 
 export const displayTodosFunc = function displayTodosFunc(positionProject) {
- 
+
     //Create a DOM element of the main DIV container
     const container = document.querySelector("#container");
     container.textContent = "";
@@ -67,16 +67,25 @@ export const displayTodosFunc = function displayTodosFunc(positionProject) {
         cards.textContent = "";
         console.log("from display todos");
         console.table(instanceofTodos.selectTodo(positionProject));
-        instanceofTodos.selectTodo(positionProject).forEach((element, index) => {
-            let nameTodo = element.nameTodo;
-            let descriptionTodo = element.descriptionTodo;
-            let dueDate = element.dueDate;
-            let priority = element.priority;
-            let positionTodo = index;
-            todoController(nameTodo, descriptionTodo, dueDate, priority, positionTodo);
-            //console.log(nameTodo, descriptionTodo, dueDate, priority, position);
-            //projectController(nameProject, descriptionProject, toDoList.length, positionProject);
-        });
+
+        try {
+
+            instanceofTodos.selectTodo(positionProject).forEach((element, index) => {
+                let nameTodo = element.nameTodo;
+                let descriptionTodo = element.descriptionTodo;
+                let dueDate = element.dueDate;
+                let priority = element.priority;
+                let positionTodo = index;
+                todoController(nameTodo, descriptionTodo, dueDate, priority, positionTodo);
+                //console.log(nameTodo, descriptionTodo, dueDate, priority, position);
+                //projectController(nameProject, descriptionProject, toDoList.length, positionProject);
+            });
+        }
+        catch (err) {
+            console.log("Something happened, trying again...");
+        }
+
+
     }
 
     //Populate all projects in the display by using DOM after receiving data from showProjects
@@ -113,6 +122,13 @@ export const displayTodosFunc = function displayTodosFunc(positionProject) {
 
         const deleteBtn = createNewElement("button", "deleteBtn", "", "Delete");
         todoOptions.appendChild(deleteBtn);
+
+        //const deleteuwu = document.getElementsByClassName("deleteBtn");
+        //Delete button
+        deleteBtn.addEventListener("click", () => {
+            instanceofTodos.deleteTodo(positionProject, positionTodo);
+            showTodos();
+        });
     };
 
     //Back button
