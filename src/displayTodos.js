@@ -1,6 +1,13 @@
 import { todosFunc } from "./todos.js";
+import { displayFunc } from "./display.js";
 
 const instanceofTodos = todosFunc();
+
+
+//testDisplay.projectController("NAME PROJECT", "DESCRIPTION PROJECT", 1);
+//testDisplay.projectController("NAME PROJECT", "DESCRIPTION PROJECT", 1);
+//testDisplay.projectController("NAME PROJECT", "DESCRIPTION PROJECT", 1);
+
 /*
 instanceofTodos.addTodoToProject(0, "todo 01", "description todo 01", "26/11/2024", 5);
 instanceofTodos.addTodoToProject(0, "todo 01", "description todo 01", "26/11/2024", 5);
@@ -9,7 +16,7 @@ instanceofTodos.addTodoToProject(0, "todo 02", "description todo 02", "26/11/202
 */
 
 export const displayTodosFunc = function displayTodosFunc(positionProject) {
-
+ 
     //Create a DOM element of the main DIV container
     const container = document.querySelector("#container");
     container.textContent = "";
@@ -36,7 +43,7 @@ export const displayTodosFunc = function displayTodosFunc(positionProject) {
 
     buttonContainer.appendChild(backToProjectsBtn);
     buttonContainer.appendChild(newTodoBtn);
-   
+
     container.appendChild(buttonContainer);
 
     //Container for all cards
@@ -106,10 +113,13 @@ export const displayTodosFunc = function displayTodosFunc(positionProject) {
 
         const deleteBtn = createNewElement("button", "deleteBtn", "", "Delete");
         todoOptions.appendChild(deleteBtn);
-
-
-
     };
+
+    //Back button
+    backToProjectsBtn.addEventListener("click", () => {
+        const instanceOfDisplay = displayFunc();
+        instanceOfDisplay.showProjects();
+    });
 
     console.table(instanceofTodos.selectTodo(positionProject));
     showTodos();
