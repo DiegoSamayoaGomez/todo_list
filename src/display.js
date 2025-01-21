@@ -36,8 +36,11 @@ export const displayFunc = function displayFunc() {
 */
 
     //CREATE A TITLE AND A BUTTON TO CREATE NEW CARDS
-    //Create a DOM element and assign the title
+    //Create a DOM element of the main DIV container
+    const container = document.querySelector("#container");
+    container.textContent = "";
     const title = document.querySelector("#title");
+    title.textContent = "";
 
     //Assign a name to the title
     const paragraphTitle = document.createElement("p");
@@ -45,9 +48,6 @@ export const displayFunc = function displayFunc() {
 
     title.appendChild(paragraphTitle);
 
-    //Create a DOM element of the main DIV container
-    const container = document.querySelector("#container");
-    //container.textContent = "";
     //Button that creates a new project
     const newProjectBtn = document.createElement("button");
     newProjectBtn.classList = "newProjectBtn";
@@ -61,6 +61,12 @@ export const displayFunc = function displayFunc() {
 
     container.appendChild(cards);
 
+    const projectModal = document.createElement("dialog");
+    projectModal.id = "showModal";
+
+    container.appendChild(projectModal);
+
+    //const projectModal = document.querySelector("#showModal");
 
     // Iterate the array of objects and send it to the controller
     const showProjects = () => {
