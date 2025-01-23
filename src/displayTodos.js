@@ -136,6 +136,130 @@ export const displayTodosFunc = function displayTodosFunc(positionProject) {
         //Update Button
     };
 
+    //Draw form
+    const newTodoForm = (nameTodo, descriptionTodo, dueDate, priority, positionTodo) => {
+
+        //Acces modal element
+        const todoModal = document.querySelector("#showModal");
+
+        //Create form
+        let projectID = ((nameTodo == undefined) && (descriptionTodo == undefined)) ? "todoForm" : "updateTodoForm";
+        const todoForm = createNewElement("form", "", projectID, "");
+        todoForm.dataset.identifier = positionTodo;
+
+        //Create UL to contain form inputs
+        const ulForm = createNewElement("ul", "", "", "");
+
+        //Create LI to contain label and todo name input
+        const liTodoName = createNewElement("li", "", "", "");
+        //Label for todo name
+        const LabelTodoName = createNewElement("label", "", "", "Title");
+        LabelTodoName.htmlFor = "nameTodo";
+        //Todo name input
+        const inputTodoName = createNewElement("input", "", "nameTodo", "");
+        nameTodo == undefined ? inputTodoName.value = "" : inputTodoName.value = nameTodo;
+        inputTodoName.setAttribute("type", "text");
+        inputTodoName.setAttribute("name", "name");
+        inputTodoName.setAttribute("required", "required");
+        //Append label for LI
+        liTodoName.appendChild(LabelTodoName);
+        //Append input for LI
+        liTodoName.appendChild(inputTodoName);
+        //Append LI to UL
+        ulForm.appendChild(liTodoName);
+
+        //Create LI to contain label and descriptionTodo  input
+        const liDescriptionTodo = createNewElement("li", "", "", "");
+        //Label for todo name
+        const labelDescriptionTodo = createNewElement("label", "", "", "Description");
+        labelDescriptionTodo.htmlFor = "descriptionTodo";
+        //Todo descriptionTodo input
+        const inputDescriptionTodo = createNewElement("input", "", "", "");
+        descriptionTodo == undefined ? inputDescriptionTodo.value = "" : inputDescriptionTodo.value = descriptionTodo;
+        inputDescriptionTodo.setAttribute("type", "text");
+        inputDescriptionTodo.setAttribute("name", "description");
+        inputDescriptionTodo.setAttribute("required", "required");
+        //Append label for LI
+        liDescriptionTodo.appendChild(labelDescriptionTodo);
+        //Append input for LI
+        liDescriptionTodo.appendChild(inputDescriptionTodo);
+        //Append LI to UL
+        ulForm.appendChild(liDescriptionTodo);
+
+        //Create LI to contain label and dueDate  input
+        const liDueDate = createNewElement("li", "", "", "");
+        //Label for todo name
+        const labelDueDate = createNewElement("label", "", "", "Due date");
+        labelDueDate.htmlFor = "dueDate";
+        //Todo dueDate input
+        const inputDueDate = createNewElement("input", "", "", "");
+        dueDate == undefined ? inputDueDate.value = "" : inputDueDate.value = dueDate;
+        //descriptionTodo == undefined ? inputDescriptionTodo.value = "" : inputDescriptionTodo.value = descriptionTodo;
+        inputDueDate.setAttribute("type", "date");
+        inputDueDate.setAttribute("name", "date");
+        inputDueDate.setAttribute("required", "required");
+        //Append label for LI
+        liDueDate.appendChild(labelDueDate);
+        //Append input for LI
+        liDueDate.appendChild(inputDueDate);
+        //Append LI to UL
+        ulForm.appendChild(liDueDate);
+
+        //Create LI to contain label and priority  input
+        const liPriority = createNewElement("li", "", "", "");
+        //Label for todo name
+        const labelPriority = createNewElement("label", "", "", "Priority");
+        labelPriority.htmlFor = "priority";
+        //Todo priority input
+        const inputPriority = createNewElement("select", "", "", "");
+        inputPriority.setAttribute("name", "piority");
+        inputPriority.setAttribute("required", "required");
+
+        // Create the options and append them to the select element
+        const options = [
+            { value: '1', text: '1' },
+            { value: '2', text: '2' },
+            { value: '3', text: '3' },
+            { value: '4', text: '4' },
+            { value: '5', text: '5' }
+        ];
+
+        // Loop through the options array and create option elements
+        options.forEach(optionData => {
+            const option = document.createElement('option');
+            option.value = optionData.value;
+            option.textContent = optionData.text;
+            inputPriority.appendChild(option);
+        });
+
+        //Append label for LI
+        liPriority.appendChild(labelPriority);
+        //Append input for LI
+        liPriority.appendChild(inputPriority);
+        //Append LI to UL
+        ulForm.appendChild(liPriority);
+
+        //Create LI for submit button
+        const liSubmitButton = createNewElement("li", "", "", "");
+        //Submit button
+        let submitButton;
+        ((nameTodo == undefined) && (descriptionTodo == undefined)) ?
+            submitButton = createNewElement("button", "", "confirmBtnForm", "Create") :
+            submitButton = createNewElement("button", "", "updateBtnForm", "Update");
+        submitButton.value = "submit";
+        //Append button to LI
+        liSubmitButton.appendChild(submitButton);
+        //Append LI to UL
+        ulForm.appendChild(liSubmitButton);
+
+        //Append UL to form
+        todoForm.appendChild(ulForm);
+
+        //Append form to modal
+        todoModal.appendChild(todoForm);
+    };
+
+
     //Back button
     backToProjectsBtn.addEventListener("click", () => {
         const instanceOfDisplay = displayFunc();
