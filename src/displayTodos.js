@@ -11,8 +11,8 @@ const instanceofTodos = todosFunc();
 /*
 instanceofTodos.addTodoToProject(0, "todo 01", "description todo 01", "26/11/2024", 5);
 instanceofTodos.addTodoToProject(0, "todo 01", "description todo 01", "26/11/2024", 5);
-instanceofTodos.addTodoToProject(0, "todo 02", "description todo 02", "26/11/2024", 4);
-instanceofTodos.addTodoToProject(0, "todo 02", "description todo 02", "26/11/2024", 4);
+instanceofTodos.addTodoToProject(1, "todo 02", "description todo 02", "26/11/2024", 4);
+instanceofTodos.addTodoToProject(1, "todo 02", "description todo 02", "26/11/2024", 4);
 */
 
 export const displayTodosFunc = function displayTodosFunc(positionProject) {
@@ -52,15 +52,21 @@ export const displayTodosFunc = function displayTodosFunc(positionProject) {
 
     container.appendChild(cards);
 
+    const todoModal = document.createElement("dialog");
+    todoModal.id = "showModal";
+    container.appendChild(todoModal);
+
     /* ********************* */
     //Function to create elements
-    const createNewElement = (typeOfElement, className, idName, textToShow) => {
+    const createNewElement = (typeOfElement, className = "", idName = "", textToShow = "") => {
         const newElement = document.createElement(typeOfElement);
-        newElement.textContent = textToShow;
-        newElement.classList = className;
-        newElement.id = idName;
+
+        if (textToShow) newElement.textContent = textToShow;
+        if (className) newElement.classList.add(className);
+        if (idName) newElement.id = idName;
+
         return newElement;
-    }
+    };
 
     // Iterate the array of objects and send it to the controller
     const showTodos = () => {
@@ -84,8 +90,6 @@ export const displayTodosFunc = function displayTodosFunc(positionProject) {
         catch (err) {
             console.log("Something happened, trying again...");
         }
-
-
     }
 
     //Populate all projects in the display by using DOM after receiving data from showProjects
@@ -123,18 +127,25 @@ export const displayTodosFunc = function displayTodosFunc(positionProject) {
         const deleteBtn = createNewElement("button", "deleteBtn", "", "Delete");
         todoOptions.appendChild(deleteBtn);
 
-        //const deleteuwu = document.getElementsByClassName("deleteBtn");
         //Delete button
         deleteBtn.addEventListener("click", () => {
             instanceofTodos.deleteTodo(positionProject, positionTodo);
             showTodos();
         });
+
+        //Update Button
     };
 
     //Back button
     backToProjectsBtn.addEventListener("click", () => {
         const instanceOfDisplay = displayFunc();
         instanceOfDisplay.showProjects();
+    });
+
+    //New todo button
+    newTodoBtn.addEventListener("click", () => {
+        //Call function that opens dialog
+        newTodoModal();
     });
 
     console.table(instanceofTodos.selectTodo(positionProject));
