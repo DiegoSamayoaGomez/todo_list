@@ -212,7 +212,7 @@ export const displayTodosFunc = function displayTodosFunc(positionProject) {
         labelPriority.htmlFor = "priority";
         //Todo priority input
         const inputPriority = createNewElement("select", "", "", "");
-        inputPriority.setAttribute("name", "piority");
+        inputPriority.setAttribute("name", "priority");
         inputPriority.setAttribute("required", "required");
 
         // Create the options and append them to the select element
@@ -290,6 +290,34 @@ export const displayTodosFunc = function displayTodosFunc(positionProject) {
         //Call function that opens dialog
         newTodoModal();
     });
+
+    //Create (inside form) button
+    const submitterButton = document.getElementById("confirmBtnForm");
+    document.getElementById('showModal').addEventListener('submit', function (event) {
+        if (event.target && event.target.id === 'todoForm') {
+            //Convert element into a DOM element
+            const todoModal = document.querySelector("#showModal");
+            event.preventDefault();
+            // Handle form submission
+            //Get data from the form after pressing the submit button
+            const formData = new FormData(todoForm, submitterButton);
+            //Convert the data obtained from the form into an object
+            const formProps = Object.fromEntries(formData);
+            console.log("FROM CREATE BUTTON INSIDE TODO", formProps.name, formProps.description, formProps.date, formProps.priority);
+
+            instanceofTodos.addTodoToProject(positionProject, formProps.name, formProps.description, formProps.date, formProps.priority);
+
+            showTodos();//const createTodo = (nameTodo, descriptionTodo, dueDate, priority) => {
+            //const addTodoToProject = (positionProject, nameTodo, descriptionTodo, dueDate, priority) => {
+
+            //instanceofProjects.addProjectToCollection(formProps.name, formProps.description, []);
+            //showProjects();
+            document.querySelector("#todoForm").reset();
+            //Close the modal after pressing the confirm button
+            todoModal.close();
+        }
+    });
+
 
     console.table(instanceofTodos.selectTodo(positionProject));
     showTodos();
