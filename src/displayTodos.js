@@ -260,6 +260,25 @@ export const displayTodosFunc = function displayTodosFunc(positionProject) {
     };
 
 
+    //Draw a modal 
+    const newTodoModal = (nameTodo, descriptionTodo, dueDate, priority, positionTodo) => {
+
+        //Access modal element
+        const todoModal = document.querySelector("#showModal");
+        //Clear screen
+        todoModal.textContent = "";
+        //Create title element
+        const todoInformation = createNewElement("h2", "", "", "Todo Information");
+        const closeInformation = createNewElement("p", "", "", "Press ESC to close without saving");
+        //Append it to the parent element
+        todoModal.appendChild(todoInformation);
+        todoModal.appendChild(closeInformation);
+
+        //Draw form
+        newTodoForm(nameTodo, descriptionTodo, dueDate, priority, positionTodo);
+        todoModal.showModal();
+    };
+
     //Back button
     backToProjectsBtn.addEventListener("click", () => {
         const instanceOfDisplay = displayFunc();
