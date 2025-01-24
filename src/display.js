@@ -71,13 +71,15 @@ export const displayFunc = function displayFunc() {
     // Iterate the array of objects and send it to the controller
     const showProjects = () => {
         cards.textContent = "";
+        console.log("FROM DIPLAY");
         console.table(instanceofProjects.getProjectArr());
         instanceofProjects.getProjectArr().forEach((element, index) => {
             let nameProject = element.nameProject;
             let descriptionProject = element.descriptionProject;
             let toDoList = element.toDoList;
+            let numberOfTodos = toDoList.length;
             let positionProject = index;
-            projectController(nameProject, descriptionProject, toDoList.length, positionProject);
+            projectController(nameProject, descriptionProject, numberOfTodos, positionProject);
         });
     }
 
@@ -292,29 +294,30 @@ export const displayFunc = function displayFunc() {
         }
     });
 
-
-
     const updaterButton = document.getElementById("updateBtnForm");
     document.getElementById('showModal').addEventListener('submit', function (event) {
         if (event.target && event.target.id === 'updateProjectForm') {
-            //Convert element into a DOM element
+            // Convert element into a DOM element
             const projectModal = document.querySelector("#showModal");
             event.preventDefault();
             // Handle form submission
-            //Get data from the form after pressing the submit button
+            // Get data from the form after pressing the submit button
             const formData = new FormData(updateProjectForm, updaterButton);
-            //Convert the data obtained from the form into an object
-
+            // Convert the data obtained from the form into an object
             const identifier = event.target.dataset.identifier;
             const formProps = Object.fromEntries(formData);
-            //console.log("All right", xd2);
-            //instanceofTodos.addProjectToCollection(formProps.name, formProps.description, []);
-            //positionProject, nameProject, descriptionProject, toDoList
-            instanceofProjects.updateProjects(identifier, formProps.name, formProps.description, instanceofTodos.selectTodo(identifier));
+            // Ensure that if no todos are selected, an empty array is passed
+            const todos = instanceofTodos.selectTodo(identifier) || [];
+            console.log("Selected Todos:", todos);
+            // Call the updateProjects method with the proper todos data
+            instanceofProjects.updateProjects(identifier, formProps.name, formProps.description, todos);
+            // Update the project list UI
             showProjects();
+            // Reset the form after submission
             document.querySelector("#updateProjectForm").reset();
-            //Close the modal after pressing the confirm button
+            // Close the modal after pressing the confirm button
             projectModal.close();
+
         }
     });
 
