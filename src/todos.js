@@ -43,7 +43,13 @@ export const todosFunc = function todosFunc() {
     };
 */
     const selectTodo = (positionProject) => {
-        return instanceOfProjects.getProjectArr()[positionProject].toDoList;
+        instanceOfProjects.restoreProjectLocally();
+        try {
+            return instanceOfProjects.getProjectArr()[positionProject].toDoList;
+        }
+        catch (err) {
+            console.log("Something happened when trying to select a Todo, trying again", err);
+        }
     };
 
 
