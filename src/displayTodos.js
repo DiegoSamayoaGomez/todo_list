@@ -161,9 +161,11 @@ export const displayTodosFunc = function displayTodosFunc(positionProject) {
         //Todo name input
         const inputTodoName = createNewElement("input", "", "nameTodo", "");
         nameTodo == undefined ? inputTodoName.value = "" : inputTodoName.value = nameTodo;
+        inputTodoName.maxLength = 25;
         inputTodoName.setAttribute("type", "text");
         inputTodoName.setAttribute("name", "name");
         inputTodoName.setAttribute("required", "required");
+        
         //Append label for LI
         liTodoName.appendChild(LabelTodoName);
         //Append input for LI
@@ -177,11 +179,13 @@ export const displayTodosFunc = function displayTodosFunc(positionProject) {
         const labelDescriptionTodo = createNewElement("label", "", "", "Description");
         labelDescriptionTodo.htmlFor = "descriptionTodo";
         //Todo descriptionTodo input
-        const inputDescriptionTodo = createNewElement("input", "", "", "");
+        const inputDescriptionTodo = createNewElement("textArea", "", "", "");
         descriptionTodo == undefined ? inputDescriptionTodo.value = "" : inputDescriptionTodo.value = descriptionTodo;
+        inputDescriptionTodo.maxLength = 200;
         inputDescriptionTodo.setAttribute("type", "text");
         inputDescriptionTodo.setAttribute("name", "description");
         inputDescriptionTodo.setAttribute("required", "required");
+        
         //Append label for LI
         liDescriptionTodo.appendChild(labelDescriptionTodo);
         //Append input for LI
@@ -232,6 +236,11 @@ export const displayTodosFunc = function displayTodosFunc(positionProject) {
             const option = document.createElement('option');
             option.value = optionData.value;
             option.textContent = optionData.text;
+
+            // Check if the priority is defined and matches the current option
+            if (priority && option.value === priority) {
+                option.selected = true;  // Set the option as selected
+            }
             inputPriority.appendChild(option);
         });
 
@@ -332,43 +341,27 @@ export const displayTodosFunc = function displayTodosFunc(positionProject) {
             // Convert element into a DOM element
             const todoModal = document.querySelector("#showModal");
             event.preventDefault();
-
             // Handle form submission
             // Get data from the form after pressing the submit button
             const formData = new FormData(updateTodoForm, updaterButton);
-
             // Convert the data obtained from the form into an object
             const identifier = event.target.dataset.identifier;
             const formProps = Object.fromEntries(formData);
-
             // Log formProps to ensure you are getting the data correctly
             console.log("Form Data:", formProps);
-
             // Ensure all form fields are provided, and fallback if needed
             const name = formProps.name || '';
             const description = formProps.description || '';
             const date = formProps.date || '';
-            const priority = formProps.priority || 'low'; // Default to 'low' if no priority is selected
-
+            const priority = formProps.priority || '1'; // Default to '1' if no priority is selected
             // Call updateTodo method to update the todo with the correct data
-            instanceofTodos.updateTodo(
-                positionProject,   // Assuming positionProject is defined or is passed in elsewhere
-                identifier,        // Unique identifier for the todo
-                name,              // Todo name
-                description,       // Todo description
-                date,              // Todo due date
-                priority          // Todo priority
-            );
-
+            instanceofTodos.updateTodo(positionProject, identifier, name, description, date, priority);
             // Update the todo list UI
             showTodos();
-
             // Reset the form after submission
             document.querySelector("#updateTodoForm").reset();
-
             // Close the modal after pressing the confirm button
             todoModal.close();
-
         }
     });
 
