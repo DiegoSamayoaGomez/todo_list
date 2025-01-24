@@ -99,7 +99,7 @@ export const displayTodosFunc = function displayTodosFunc(positionProject) {
         const dueDateCard = createNewElement("p", "dueDateCard", "", `Finish before ${dueDate}`);
         todoInfo.appendChild(dueDateCard);
 
-        const priorityCard = createNewElement("p", "priorityCard", "", `Priority level ${priority}`);
+        const priorityCard = createNewElement("p", "priorityCard", `priority-${priority}`, `Priority level ${priority}`);
         todoInfo.appendChild(priorityCard);
 
         //Options for each card

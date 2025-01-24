@@ -136,6 +136,29 @@ button {
     border: solid #B43243 1px;
 }
 
+#priority-1, #priority-2 {
+    background-color: #b2ffc5;
+    color: #00340f;
+    font-weight: bold;
+    border-radius: 5px;
+
+}
+
+#priority-3 {
+    background-color: #f6ff7a;
+    color: black;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+#priority-4,
+#priority-5 {
+    background-color: #912C38;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
 .footer {
     width: 100%;
     display: flex;
