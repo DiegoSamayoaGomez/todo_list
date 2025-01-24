@@ -88,7 +88,7 @@ export const displayTodosFunc = function displayTodosFunc(positionProject) {
             });
         }
         catch (err) {
-            console.log("Something happened, trying again...");
+            console.log("SHOW TODOS, Something happened, trying again...", err);
         }
     }
 
@@ -134,6 +134,9 @@ export const displayTodosFunc = function displayTodosFunc(positionProject) {
         });
 
         //Update Button
+        updateBtn.addEventListener("click", () => {
+            newTodoModal(nameTodo, descriptionTodo, dueDate, priority, positionTodo);
+        });
     };
 
     //Draw form
@@ -304,8 +307,12 @@ export const displayTodosFunc = function displayTodosFunc(positionProject) {
             //Convert the data obtained from the form into an object
             const formProps = Object.fromEntries(formData);
             console.log("FROM CREATE BUTTON INSIDE TODO", formProps.name, formProps.description, formProps.date, formProps.priority);
+            try {
+                instanceofTodos.addTodoToProject(positionProject, formProps.name, formProps.description, formProps.date, formProps.priority);
 
-            instanceofTodos.addTodoToProject(positionProject, formProps.name, formProps.description, formProps.date, formProps.priority);
+            } catch (error) {
+                console.log("error from display todos");
+            }
 
             showTodos();//const createTodo = (nameTodo, descriptionTodo, dueDate, priority) => {
             //const addTodoToProject = (positionProject, nameTodo, descriptionTodo, dueDate, priority) => {
@@ -318,6 +325,52 @@ export const displayTodosFunc = function displayTodosFunc(positionProject) {
         }
     });
 
+    //Update (inside form) button
+    const updaterButton = document.getElementById("updateBtnForm");
+    document.getElementById('showModal').addEventListener('submit', function (event) {
+        if (event.target && event.target.id === 'updateTodoForm') {
+            // Convert element into a DOM element
+            const todoModal = document.querySelector("#showModal");
+            event.preventDefault();
+
+            // Handle form submission
+            // Get data from the form after pressing the submit button
+            const formData = new FormData(updateTodoForm, updaterButton);
+
+            // Convert the data obtained from the form into an object
+            const identifier = event.target.dataset.identifier;
+            const formProps = Object.fromEntries(formData);
+
+            // Log formProps to ensure you are getting the data correctly
+            console.log("Form Data:", formProps);
+
+            // Ensure all form fields are provided, and fallback if needed
+            const name = formProps.name || '';
+            const description = formProps.description || '';
+            const date = formProps.date || '';
+            const priority = formProps.priority || 'low'; // Default to 'low' if no priority is selected
+
+            // Call updateTodo method to update the todo with the correct data
+            instanceofTodos.updateTodo(
+                positionProject,   // Assuming positionProject is defined or is passed in elsewhere
+                identifier,        // Unique identifier for the todo
+                name,              // Todo name
+                description,       // Todo description
+                date,              // Todo due date
+                priority          // Todo priority
+            );
+
+            // Update the todo list UI
+            showTodos();
+
+            // Reset the form after submission
+            document.querySelector("#updateTodoForm").reset();
+
+            // Close the modal after pressing the confirm button
+            todoModal.close();
+
+        }
+    });
 
     console.table(instanceofTodos.selectTodo(positionProject));
     showTodos();
