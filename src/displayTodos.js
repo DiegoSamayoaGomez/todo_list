@@ -3,18 +3,6 @@ import { displayFunc } from "./display.js";
 
 const instanceofTodos = todosFunc();
 
-
-//testDisplay.projectController("NAME PROJECT", "DESCRIPTION PROJECT", 1);
-//testDisplay.projectController("NAME PROJECT", "DESCRIPTION PROJECT", 1);
-//testDisplay.projectController("NAME PROJECT", "DESCRIPTION PROJECT", 1);
-
-/*
-instanceofTodos.addTodoToProject(0, "todo 01", "description todo 01", "26/11/2024", 5);
-instanceofTodos.addTodoToProject(0, "todo 01", "description todo 01", "26/11/2024", 5);
-instanceofTodos.addTodoToProject(1, "todo 02", "description todo 02", "26/11/2024", 4);
-instanceofTodos.addTodoToProject(1, "todo 02", "description todo 02", "26/11/2024", 4);
-*/
-
 export const displayTodosFunc = function displayTodosFunc(positionProject) {
 
     //Create a DOM element of the main DIV container
@@ -83,8 +71,6 @@ export const displayTodosFunc = function displayTodosFunc(positionProject) {
                 let priority = element.priority;
                 let positionTodo = index;
                 todoController(nameTodo, descriptionTodo, dueDate, priority, positionTodo);
-                //console.log(nameTodo, descriptionTodo, dueDate, priority, position);
-                //projectController(nameProject, descriptionProject, toDoList.length, positionProject);
             });
         }
         catch (err) {
@@ -165,7 +151,7 @@ export const displayTodosFunc = function displayTodosFunc(positionProject) {
         inputTodoName.setAttribute("type", "text");
         inputTodoName.setAttribute("name", "name");
         inputTodoName.setAttribute("required", "required");
-        
+
         //Append label for LI
         liTodoName.appendChild(LabelTodoName);
         //Append input for LI
@@ -185,7 +171,7 @@ export const displayTodosFunc = function displayTodosFunc(positionProject) {
         inputDescriptionTodo.setAttribute("type", "text");
         inputDescriptionTodo.setAttribute("name", "description");
         inputDescriptionTodo.setAttribute("required", "required");
-        
+
         //Append label for LI
         liDescriptionTodo.appendChild(labelDescriptionTodo);
         //Append input for LI
@@ -201,7 +187,7 @@ export const displayTodosFunc = function displayTodosFunc(positionProject) {
         //Todo dueDate input
         const inputDueDate = createNewElement("input", "", "", "");
         dueDate == undefined ? inputDueDate.value = "" : inputDueDate.value = dueDate;
-        //descriptionTodo == undefined ? inputDescriptionTodo.value = "" : inputDescriptionTodo.value = descriptionTodo;
+
         inputDueDate.setAttribute("type", "date");
         inputDueDate.setAttribute("name", "date");
         inputDueDate.setAttribute("required", "required");
@@ -323,11 +309,7 @@ export const displayTodosFunc = function displayTodosFunc(positionProject) {
                 console.log("error from display todos");
             }
 
-            showTodos();//const createTodo = (nameTodo, descriptionTodo, dueDate, priority) => {
-            //const addTodoToProject = (positionProject, nameTodo, descriptionTodo, dueDate, priority) => {
-
-            //instanceofProjects.addProjectToCollection(formProps.name, formProps.description, []);
-            //showProjects();
+            showTodos();
             document.querySelector("#todoForm").reset();
             //Close the modal after pressing the confirm button
             todoModal.close();

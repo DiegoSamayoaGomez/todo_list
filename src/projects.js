@@ -38,30 +38,11 @@ export const projectsFunc = function projectsFunc() {
 
     // Restore and update the array from localStorage
     const restoreProjectLocally = () => {
-
         const savedData = localStorage.getItem("Project");
         projectArr = savedData ? JSON.parse(savedData) : [];  // Update projectArr directly with the restored data
-        //console.log("idk", savedData);
         projectArr = (savedData != null) ? JSON.parse(savedData) : addProjectToCollection("EXAMPLE title", "EXAMPLE description", []);  // Update projectArr directly with the restored data
-        /* 
-        const savedData = localStorage.getItem("Project");
-        // If data exists in localStorage, use it. Otherwise, create a default example.
-        projectArr = (savedData != null) ? JSON.parse(savedData) : addProjectToCollection("EXAMPLE title", "EXAMPLE description", []);  // Update projectArr directly with the restored data
-*/
     };
 
-    //Iterate through the array of projects and display each one
-    // ** MOVE TO THE DOM CONTROLLER AFTER ** 
-    const showProjects = () => {
-        const showProjects = getProjectArr().forEach((element, index) => {
-            let nameProject = element.nameProject;
-            let descriptionProject = element.descriptionProject;
-            let toDoList = element.toDoList;
-            let positionProject = index;
-            console.log(nameProject);
-
-        });
-    }
     //Show current collection of projects
     const getProjectArr = () => projectArr;
     //Initiliaze array
@@ -69,5 +50,5 @@ export const projectsFunc = function projectsFunc() {
     //Check if there´s existing data
     restoreProjectLocally();
 
-    return { createProject, addProjectToCollection, getProjectArr, updateProjects, deleteProject, saveProjectLocally, restoreProjectLocally };
+    return { addProjectToCollection, getProjectArr, updateProjects, deleteProject, saveProjectLocally, restoreProjectLocally };
 }
