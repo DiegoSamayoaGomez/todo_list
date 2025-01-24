@@ -53,7 +53,15 @@ export const displayFunc = function displayFunc() {
     newProjectBtn.classList = "newProjectBtn";
     newProjectBtn.textContent = "New";
 
-    container.appendChild(newProjectBtn);
+    const buttonContainer = document.createElement("div");
+    buttonContainer.classList = "buttonContainer";
+
+    buttonContainer.appendChild(newProjectBtn);
+
+    container.appendChild(buttonContainer);
+
+
+    //container.appendChild(newProjectBtn);
 
     //Container for all cards
     const cards = document.createElement("div");
@@ -182,6 +190,7 @@ export const displayFunc = function displayFunc() {
         nameProjectInput.id = "nameProject";
 
         projectTitle == undefined ? nameProjectInput.value = "" : nameProjectInput.value = projectTitle;
+        nameProjectInput.maxLength = 25;
         nameProjectInput.setAttribute("type", "text");
         nameProjectInput.setAttribute("name", "name");
         nameProjectInput.setAttribute("required", "required");
