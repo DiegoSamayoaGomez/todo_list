@@ -10,7 +10,7 @@ export const projectsFunc = function projectsFunc() {
 
     //Create a new project and add it to the array of projects
     const addProjectToCollection = (nameProject, descriptionProject, toDoList) => {
-        //restoreProjectLocally();
+        restoreProjectLocally();
         const addProject = createProject(nameProject, descriptionProject, toDoList);
         projectArr.push(addProject);
         saveProjectLocally();
@@ -18,14 +18,14 @@ export const projectsFunc = function projectsFunc() {
 
     //Receive the position of the object to modify and change it
     const updateProjects = (positionProject, nameProject, descriptionProject, toDoList) => {
-        //restoreProjectLocally();
+        restoreProjectLocally();
         projectArr.splice(positionProject, 1, { nameProject, descriptionProject, toDoList });
         saveProjectLocally();
     }
 
     //Delete project and all of it inner toDo Lists
     const deleteProject = (positionProject) => {
-        //restoreProjectLocally();
+        restoreProjectLocally();
         projectArr.splice(positionProject, 1);
         saveProjectLocally();
     }
@@ -39,7 +39,7 @@ export const projectsFunc = function projectsFunc() {
     // Restore and update the array from localStorage
     const restoreProjectLocally = () => {
         const savedData = localStorage.getItem("Project");
-        //console.log("idk", savedData);
+        // If data exists in localStorage, use it. Otherwise, create a default example.
         projectArr = (savedData != null) ? JSON.parse(savedData) : addProjectToCollection("EXAMPLE title", "EXAMPLE description", []);  // Update projectArr directly with the restored data
     };
 
